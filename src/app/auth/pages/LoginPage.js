@@ -43,7 +43,7 @@ const LoginPage = () => {
                 </form>
             </div>
             <div className={styles.rightPane}>
-                <img src="https://picsum.photos/600/400" alt="Imagen de bienvenida" className={styles.image} />
+                <img src={require('../../assets/images/FondoBoldFrontendProcess.png')} alt="Imagen de bienvenida" className={styles.image} />
             </div>
         </div>
     );
