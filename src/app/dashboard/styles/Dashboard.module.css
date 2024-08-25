@@ -1,0 +1,95 @@
+.navbar {
+    background: linear-gradient(90deg, #121E6C 0%, #EE424E 100%);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    height: 50px;
+}
+
+.navLinks {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navLinks a {
+    color: white;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+}
+
+.navLinks a:hover {
+    text-decoration: underline;
+}
+
+
+
+.summaryCard {
+    background-color: #F3F3F3;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.totalAmount {
+    font-size: 24px;
+    font-weight: bold;
+    color: #121E6C;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.filterBar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filterBar button, .filterBar select {
+    background-color: #F3F3F3;
+    border: 1px solid #606060;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.filterBar button:hover, .filterBar select:hover {
+    background-color: #EE424E;
+    color: white;
+}
+
+
+
+.transactionsTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.transactionsTable th, .transactionsTable td {
+    border: 1px solid #606060;
+    padding: 10px;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.transactionsTable th {
+    background-color: #121E6C;
+    color: white;
+}
+
+.transactionsTable td {
+    background-color: #F6F4F9;
+}
+
+.transactionsTable tr:nth-child(even) {
+    background-color: #F3F3F3;
+}

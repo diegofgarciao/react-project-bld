@@ -1,7 +1,7 @@
 const authService = {
     login: async (username, password) => {
         // Simulación de autenticación
-        if (username === 'admin' && password === 'password') {
+        if (username === 'user' && password === 'password') {
             localStorage.setItem('user', JSON.stringify({ username }));
             return true;
         }
