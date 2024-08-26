@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from '../styles/Dashboard.module.css';
-import logo from '../../assets/icons/iconNavBar.png';
+import styles from '../NavBar/NavBar.module.css';
+import logo from '../../../assets/icons/iconNavBar.png';
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -13,7 +13,7 @@ const Navbar = () => {
 
     return (
         <nav className={styles.navbar}>
-            <img src={logo} alt="Logo" className={styles.logo} />
+            <a href="https://bold.co/v1" target="_blank" rel="noopener noreferrer"><img src={logo} alt="Logo" className={styles.logo} /></a>
             <ul className={styles.navLinks}>
                 <li><a href="https://bold.co/v1" target="_blank" rel="noopener noreferrer">Mi Negocio</a></li>
                 <li><a href="https://jobs.bold.co/o/frontend-engineer-react" target="_blank" rel="noopener noreferrer">Ayuda</a></li>
