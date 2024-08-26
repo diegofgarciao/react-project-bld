@@ -1,25 +1,101 @@
-import React, { useState } from 'react';
-import Navbar from '../components/Navbar';
-import SummaryCard from '../components/SummaryCard';
-import FilterBar from '../components/FilterBar';
-import TransactionsTable from '../components/TransactionsTable';
+import React, { useState, useEffect } from 'react';
+import Navbar from '../components/NavBar/Navbar';
+import SummaryCard from '../components/SummaryCards/SummaryCard';
+import FilterBar from '../components/FilterBar/FilterBar';
+import TransactionsTable from '../components/TransactionTable/TransactionsTable';
+import transactionsService from '../services/transactionsService';
 import styles from '../styles/Dashboard.module.css';
+import months from '../data/months'
+
+// Función para filtrar por fecha
+const filterByDate = (transactions, filter) => {
+    const now = new Date();
+    let startOfPeriod;
+
+    switch (filter) {
+        case 'today':
+            return transactions.filter(transaction => {
+                const transactionDate = new Date(transaction.createdAt);
+                return transactionDate.toDateString() === now.toDateString();
+            });
+        case 'week':
+            startOfPeriod = new Date(now);
+            startOfPeriod.setDate(now.getDate() - now.getDay());
+            return transactions.filter(transaction => {
+                const transactionDate = new Date(transaction.createdAt);
+                return transactionDate >= startOfPeriod && transactionDate <= now;
+            });
+        case 'month':
+            startOfPeriod = new Date(now.getFullYear(), now.getMonth(), 1);
+            return transactions.filter(transaction => {
+                const transactionDate = new Date(transaction.createdAt);
+                return transactionDate >= startOfPeriod && transactionDate <= now;
+            });
+        default:
+            return transactions;
+    }
+};
+
+// Función para filtrar por tipo de transacción
+const filterByTransactionType = (transactions, type) => {
+    if (type === 'all') {
+        return transactions;
+    }
+    return transactions.filter(transaction => transaction.paymentMethod === type);
+};
+
+// Función para aplicar todos los filtros
+const applyFilters = (transactions, filter) => {
+    let filtered = filterByDate(transactions, filter.date);
+
+    // Filtrado por Mes
+    if (filter.date && months.some(month => month.value === filter.date)) {
+        const monthIndex = months.findIndex(month => month.value === filter.date);
+        filtered = filtered.filter(transaction => {
+            const transactionDate = new Date(transaction.createdAt);
+            return transactionDate.getMonth() === monthIndex;
+        });
+    }
+
+    filtered = filterByTransactionType(filtered, filter.type);
+    return filtered;
+};
 
 const DashboardPage = () => {
-    const [total, setTotal] = useState(0);
+    const [transactions, setTransactions] = useState([]);
+    const [filteredTransactions, setFilteredTransactions] = useState([]);
+    const [filter, setFilter] = useState({ date: 'today', type: 'all' });
 
-    const handleFilterChange = (filter) => {
-        // Aquí puedes implementar la lógica para filtrar las transacciones
-        console.log(filter);
+    useEffect(() => {
+        transactionsService.getTransactions().then(data => {
+            setTransactions(data); // Guarda todas las transacciones
+            const initialFilteredTransactions = applyFilters(data, filter); // Aplica los filtros iniciales
+            setFilteredTransactions(initialFilteredTransactions); // Guarda los datos filtrados iniciales
+        });
+    }, []);
+
+    useEffect(() => {
+        const updatedFilteredTransactions = applyFilters(transactions, filter);
+        setFilteredTransactions(updatedFilteredTransactions);
+    }, [filter, transactions]);
+
+    const calculateTotal = (transactions) => {
+        return transactions.reduce((total, transaction) => total + transaction.amount, 0);
+    };
+
+    const handleFilterChange = (newFilter) => {
+        setFilter(prevFilter => ({ ...prevFilter, ...newFilter }));
     };
 
     return (
         <div className={styles.dashboard}>
             <Navbar />
+            <div className={styles.row}>
+                <SummaryCard total={calculateTotal(filteredTransactions)} />
+                <FilterBar onFilterChange={handleFilterChange} months={months} />
+            </div>
             <div className={styles.content}>
-                <SummaryCard total={total} />
-                <FilterBar onFilterChange={handleFilterChange} />
-                <TransactionsTable />
+                <TransactionsTable transactions={filteredTransactions} />
             </div>
         </div>
     );

@@ -1,0 +1,62 @@
+.filterBar {
+    display: flex;
+    gap: 10px;
+    margin: 20px;
+}
+
+.filterBar button, .filterBar select {
+    background-color: #F3F3F3;
+    border: 1px solid #606060;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    color: #121E6C;
+}
+
+.filterBar button:hover, .filterBar select:hover {
+    background-color: #EE424E;
+    color: white;
+}
+
+/* Pantallas pequeñas (teléfonos en modo retrato) */
+@media (max-width: 600px) {
+    .filterBar {
+        flex-direction: column;
+        gap: 5px;
+        margin: 10px;
+    }
+
+    .filterBar button, .filterBar select {
+        width: 100%;
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+
+/* Pantallas medianas (tabletas) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .filterBar {
+        gap: 8px;
+        margin: 15px;
+    }
+
+    .filterBar button, .filterBar select {
+        padding: 10px;
+        font-size: 16px;
+    }
+}
+
+/* Pantallas grandes (escritorios) */
+@media (min-width: 1025px) {
+    .filterBar {
+        gap: 10px;
+        margin: 20px;
+        padding: 15px 20px;
+    }
+
+    .filterBar button, .filterBar select {
+        padding: 10px;
+        font-size: 16px;
+    }
+}
