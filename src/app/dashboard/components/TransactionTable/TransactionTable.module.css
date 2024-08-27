@@ -75,7 +75,6 @@
     text-decoration: underline;
 }
 
-/* Pantallas pequeñas (teléfonos en modo retrato) */
 @media (max-width: 600px) {
     .tableContainer {
         width: 100%;
@@ -104,7 +103,6 @@
     }
 }
 
-/* Pantallas medianas (tabletas) */
 @media (min-width: 601px) and (max-width: 1024px) {
     .tableContainer {
         width: 90%;
@@ -129,7 +127,6 @@
     }
 }
 
-/* Pantallas grandes (escritorios) */
 @media (min-width: 1025px) {
     .tableContainer {
         width: 95%;

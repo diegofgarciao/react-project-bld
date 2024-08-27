@@ -28,14 +28,14 @@ const TransactionsTable = ({ transactions }) => {
 
   const filteredTransactions = transactions.filter(
     (transaction) =>
-      transaction.status.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      transaction.status?.toLowerCase().includes(searchTerm.toLowerCase()) || 
       formatDate(transaction.createdAt)
         .toLowerCase()
         .includes(searchTerm.toLowerCase()) ||
       transaction.paymentMethod
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()) ||
-      transaction.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        ?.toLowerCase()
+        .includes(searchTerm.toLowerCase()) || 
+      transaction.id?.toLowerCase().includes(searchTerm.toLowerCase()) || 
       formatCurrency(transaction.amount)
         .toLowerCase()
         .includes(searchTerm.toLowerCase())

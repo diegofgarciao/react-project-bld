@@ -24,16 +24,18 @@ const LoginPage = () => {
                 <h2 className={styles.title}>Bienvenido Bold App in React, por favor inicie sesión</h2>
                 <form onSubmit={handleLogin} className={styles.form}>
                     <div>
-                        <label>Usuario:</label>
+                        <label htmlFor="username">Usuario:</label>
                         <input
+                            id="username"
                             type="text"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                         />
                     </div>
                     <div>
-                        <label>Contraseña:</label>
+                        <label htmlFor="password">Contraseña:</label>
                         <input
+                            id="password"
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
