@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import authService from '../services/authService';
 import styles from '../styles/LoginPage.module.css';
-import fondoBold from '../../assets/images/FondoBoldFrontendProcess.png';
+import fondoBold from '../../../assets/images/FondoBoldFrontendProcess.png';
 
 const LoginPage = () => {
     const [username, setUsername] = useState('');
