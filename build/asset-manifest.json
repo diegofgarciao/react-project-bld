@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.bcbb6b85.css",
+    "main.js": "/static/js/main.d0622e3a.js",
+    "static/js/453.56877071.chunk.js": "/static/js/453.56877071.chunk.js",
+    "static/media/FondoBoldFrontendProcess.png": "/static/media/FondoBoldFrontendProcess.720a6bb1fbbd087a7ae9.png",
+    "static/media/iconNavBar.png": "/static/media/iconNavBar.ac20e815de96b217f845.png",
+    "index.html": "/index.html",
+    "main.bcbb6b85.css.map": "/static/css/main.bcbb6b85.css.map",
+    "main.d0622e3a.js.map": "/static/js/main.d0622e3a.js.map",
+    "453.56877071.chunk.js.map": "/static/js/453.56877071.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bcbb6b85.css",
+    "static/js/main.d0622e3a.js"
+  ]
+}
