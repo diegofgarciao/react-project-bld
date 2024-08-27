@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import authService from '../services/authService';
 import styles from '../styles/LoginPage.module.css';
+import fondoBold from '../../assets/images/FondoBoldFrontendProcess.png';
 
 const LoginPage = () => {
     const [username, setUsername] = useState('');
@@ -24,16 +25,18 @@ const LoginPage = () => {
                 <h2 className={styles.title}>Bienvenido Bold App in React, por favor inicie sesión</h2>
                 <form onSubmit={handleLogin} className={styles.form}>
                     <div>
-                        <label>Usuario:</label>
+                        <label htmlFor="username">Usuario:</label>
                         <input
+                            id="username"
                             type="text"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                         />
                     </div>
                     <div>
-                        <label>Contraseña:</label>
+                        <label htmlFor="password">Contraseña:</label>
                         <input
+                            id="password"
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
@@ -43,7 +46,7 @@ const LoginPage = () => {
                 </form>
             </div>
             <div className={styles.rightPane}>
-                <img src={require('../../assets/images/FondoBoldFrontendProcess.png')} alt="Imagen de bienvenida" className={styles.image} />
+                <img src={fondoBold} alt="Imagen de bienvenida" className={styles.image} />
             </div>
         </div>
     );
