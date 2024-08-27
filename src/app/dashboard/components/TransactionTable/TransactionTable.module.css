@@ -69,6 +69,11 @@
     background-color: #eaeaea;
 }
 
+.clickable {
+    cursor: pointer;
+    color: #121E6C;
+    text-decoration: underline;
+}
 
 /* Pantallas pequeñas (teléfonos en modo retrato) */
 @media (max-width: 600px) {

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import styles from "../TransactionTable/TransactionTable.module.css";
+import TransactionModal from '../TransactionModal/TransactionModal';
 
 const TransactionsTable = ({ transactions }) => {
+
   const formatDate = (milliseconds) => {
     const date = new Date(milliseconds);
     return date.toLocaleString("es-CO", {
@@ -24,7 +26,6 @@ const TransactionsTable = ({ transactions }) => {
 
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Filtrar transacciones según el término de búsqueda
   const filteredTransactions = transactions.filter(
     (transaction) =>
       transaction.status.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -40,14 +41,25 @@ const TransactionsTable = ({ transactions }) => {
         .includes(searchTerm.toLowerCase())
   );
 
+  const [selectedTransaction, setSelectedTransaction] = useState(null);
+
+  const handleTransactionClick = (transaction) => {
+    setSelectedTransaction(transaction);
+  };
+
+  const closeModal = () => {
+    setSelectedTransaction(null);
+  };
+
   return (
     <div className={styles.tableContainer}>
+      <TransactionModal transaction={selectedTransaction} onClose={closeModal} />
       <div className={styles.tableHeader}>
         <h3 className={styles.tableTitle}>Transacciones</h3>
         <div className={styles.searchFilter}>
-          <input
-            type="text"
-            placeholder="Buscar por palabra"
+          <input 
+            type="text" 
+            placeholder="Buscar por palabra" 
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -66,10 +78,14 @@ const TransactionsTable = ({ transactions }) => {
         <tbody>
           {filteredTransactions.map((transaction, index) => (
             <tr key={index}>
-              <td>{transaction.status}</td>
+              <td onClick={() => handleTransactionClick(transaction)} className={styles.clickable}>
+                {transaction.status}
+              </td>
               <td>{formatDate(transaction.createdAt)}</td>
               <td>{transaction.paymentMethod}</td>
-              <td>{transaction.id}</td>
+              <td onClick={() => handleTransactionClick(transaction)} className={styles.clickable}>
+                {transaction.id}
+              </td>
               <td>{formatCurrency(transaction.amount)}</td>
             </tr>
           ))}
