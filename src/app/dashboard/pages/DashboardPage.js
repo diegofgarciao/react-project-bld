@@ -7,7 +7,6 @@ import transactionsService from '../services/transactionsService';
 import styles from '../styles/Dashboard.module.css';
 import months from '../data/months'
 
-// Función para filtrar por fecha
 const filterByDate = (transactions, filter) => {
     const now = new Date();
     let startOfPeriod;
@@ -36,7 +35,6 @@ const filterByDate = (transactions, filter) => {
     }
 };
 
-// Función para filtrar por tipo de transacción
 const filterByTransactionType = (transactions, type) => {
     if (type === 'all') {
         return transactions;
@@ -44,11 +42,9 @@ const filterByTransactionType = (transactions, type) => {
     return transactions.filter(transaction => transaction.paymentMethod === type);
 };
 
-// Función para aplicar todos los filtros
 const applyFilters = (transactions, filter) => {
     let filtered = filterByDate(transactions, filter.date);
 
-    // Filtrado por Mes
     if (filter.date && months.some(month => month.value === filter.date)) {
         const monthIndex = months.findIndex(month => month.value === filter.date);
         filtered = filtered.filter(transaction => {
@@ -68,9 +64,9 @@ const DashboardPage = () => {
 
     useEffect(() => {
         transactionsService.getTransactions().then(data => {
-            setTransactions(data); // Guarda todas las transacciones
-            const initialFilteredTransactions = applyFilters(data, filter); // Aplica los filtros iniciales
-            setFilteredTransactions(initialFilteredTransactions); // Guarda los datos filtrados iniciales
+            setTransactions(data);
+            const initialFilteredTransactions = applyFilters(data, filter);
+            setFilteredTransactions(initialFilteredTransactions);
         });
     }, []);
 
